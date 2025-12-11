@@ -56,7 +56,7 @@ export default {
   },
 
   // Props
-  // Son variables que yo puedo instanciar o dar un valor, extermo de mi componente.
+  // Son variables que yo puedo instanciar o dar un valor, externo de mi componente.
   // Variables a nivel de componente, son seteados por el padre
   //props: ["tit", "inicio", "mostrar"], // declaracion basica de props.
   props: {

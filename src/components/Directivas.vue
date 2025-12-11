@@ -94,9 +94,6 @@ export default {
 </script>
 
 <style>
-input {
-  margin-left: 20px;
-}
 
 table,
 tr,
