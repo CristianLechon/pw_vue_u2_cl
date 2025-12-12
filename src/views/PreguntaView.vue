@@ -14,7 +14,8 @@ export default {
 </script>
 
 <style>
-.view-container, .pregunta-container {
+.view-container,
+.pregunta-container {
   display: flex;
   flex-direction: column; /* elementos uno debajo del otro */
   align-items: center; /* centrado vertical */
@@ -47,7 +48,7 @@ p {
   font-size: 20px;
 }
 
-h2{
-    margin-top: 150px;
+h2 {
+  margin-top: 150px;
 }
 </style>

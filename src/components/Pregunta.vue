@@ -1,24 +1,65 @@
 <template>
   <div>
-    <img
-      src="https://yesno.wtf/assets/no/8-5e08abbe5aacd2cf531948145b787e9a.gif"
-      alt="No puede ver"
-    />
+    <img v-if="imagen" :src="imagen" alt="No puede ver" />
+    <div class="oscuro"></div>
     <div class="pregunta-container">
-      <input id="id_input" type="text" placeholder="Hazme una pregunta" />
+      <input
+        v-model="pregunta"
+        id="id_input"
+        type="text"
+        placeholder="Hazme una pregunta"
+      />
       <p>Recuerda terminar con el signo de interogación (?)</p>
-      <h2>Sere millonario?</h2>
-      <h1>Yes, No</h1>
+      <h2>{{ pregunta }}</h2>
+      <h1>{{ respuesta }}</h1>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+import {
+  consumirAPIFacade,
+  consumirAPIFacade2,
+} from "../clients/YesNoClient.js";
+export default {
+  data() {
+    return {
+      pregunta: null,
+      respuesta: null,
+      imagen: null,
+    };
+  },
+  // (watch) Observadores de propiedades reactivas
+  watch: {
+    pregunta(value, oldValue) {
+      // poniendo el mismo nombre, con 2 argumentos value y oldValue
+      //console.log("value ",value);
+      //console.log("oldValue ",oldValue);
+      if (value.includes("?")) {
+        //Llamar al API
+        this.respuesta = 'Pensando....';
+        this.consumir();
+      }
+    },
+  },
+
+  methods: {
+    async consumir() {
+      const resp = await consumirAPIFacade();
+      this.imagen = resp.image;
+      console.log("Respuesta Final");
+      console.log(resp);
+      console.log(resp.answer);
+      this.respuesta = resp.answer;
+      
+    },
+  },
+};
 </script>
 
 <style>
-img {
+img,
+.oscuro {
   height: 100vh;
   width: 100vw;
   max-height: 100%;
@@ -29,5 +70,9 @@ img {
 }
 h1 {
   font-size: 80px;
+}
+
+.oscuro {
+background-color: rgba(0, 0, 0, 0.4);
 }
 </style>
