@@ -13,7 +13,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .view-container,
 .pregunta-container {
   display: flex;
